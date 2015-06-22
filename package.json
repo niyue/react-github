@@ -1,0 +1,36 @@
+{
+  "name": "react-github",
+  "version": "0.1.0",
+  "description": "A crude and simple Github viewer",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "author": "Ni Yue",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^5.4.7",
+    "babel-eslint": "^3.1.9",
+    "babel-loader": "^5.1.2",
+    "eslint-plugin-react": "^2.3.0",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.6",
+    "node-libs-browser": "^0.5.2",
+    "eslint": "^0.23.0",
+    "webpack-dev-server": "^1.8.2"
+  },
+  "dependencies": {
+    "react": "^0.13.0",
+    "jquery": "^2.1.4"
+  }
+}
