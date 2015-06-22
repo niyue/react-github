@@ -7,13 +7,15 @@ module.exports = React.createClass({
   getInitialState: function() { 
     return {
       location: 'Shanghai',
+      pendingSearch: null,
       users: []
     }; 
   },
   
   searchUsers: function(location) {
-    var url = `https://api.github.com/search/users?q=location:${location}+repos:>=10`;
-    //var url = `/assets/${location}.json`;
+    this.setState({pendingSearch: null});
+    //var url = `https://api.github.com/search/users?q=location:${location}+repos:>=10`;
+    var url = `/assets/${location}.json`;
     console.log('event=search_users url=%s', url);
     $.ajax({
       url: url,
@@ -35,8 +37,12 @@ module.exports = React.createClass({
   },
   
   handleLocationChange: function(location) {
-    this.setState({location: location});
-    this.searchUsers(this.state.location);
+    if(this.state.pendingSearch) {
+      clearTimeout(this.state.pendingSearch);
+    }
+    var that = this;
+    var pendingSearch = setTimeout(function() {that.searchUsers(location)}, 500);
+    this.setState({location: location, pendingSearch: pendingSearch});
   },
   
   render: function() {
