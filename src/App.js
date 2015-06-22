@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import UserList from './UserList';
+import FilterableUserList from './FilterableUserList';
 
 export default class App extends Component {
   render() {
     return (
-      <UserList />
+      <FilterableUserList username="react-github" password="BadPassw0rd"/>
     );
   }
 }

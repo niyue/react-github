@@ -5,7 +5,8 @@ export default class User extends Component {
     return(
       <span>
         <dt>{this.props.user.login}</dt>
-        <dd>{this.props.user.html_url}</dd>
+        {/* <img src={this.props.user.avatar_url} width="64" /> */}
+        <dd><a href={this.props.user.html_url}>{this.props.user.html_url}</a></dd>
       </span>    
     );
   }
