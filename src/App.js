@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import RepoList from './RepoList';
+import UserList from './UserList';
 
 export default class App extends Component {
   render() {
     return (
-      <RepoList />
+      <UserList />
     );
   }
 }
