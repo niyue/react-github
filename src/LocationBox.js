@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 module.exports = React.createClass({
   handleChange: function(event) {
-    this.props.onUserInput(event.target.value);
+    console.debug('action=location_changed');
+    var value = event.target.value === 'shanghai' ? 'shenzhen' : 'shanghai';
+    this.props.onUserInput(value);
   },
   
   render: function() {
     return(
-      <div>
-        <input value={this.props.location} onChange={this.handleChange} ref="userLocationInput" />
+      <div class="location-box">
+        <input type="submit" value={this.props.location} onClick={this.handleChange} ref="userLocationInput" class="location-input" />
       </div>
     );
   }

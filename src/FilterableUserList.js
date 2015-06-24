@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import UserList from './UserList';
+import UserGrid from './UserGrid';
 import LocationBox from './LocationBox';
 import $ from 'jquery';
+
+// var USERS = [];
+// for(var i = 0; i < 200; i++) {
+//   USERS.push({'login': `u${i}`, 'html_url': `http://example.com/u${i}`})  
+// }
+    
+var USERS = [];
 
 module.exports = React.createClass({
   getInitialState: function() { 
     return {
-      location: 'Shanghai',
+      location: 'shanghai',
       pendingSearch: null,
-      users: []
+      users: USERS
     }; 
   },
   
   searchUsers: function(location) {
+    // this.setState({users: USERS});
     this.setState({pendingSearch: null});
     //var url = `https://api.github.com/search/users?q=location:${location}+repos:>=10`;
     var url = `/assets/${location}.json`;
-    console.log('event=search_users url=%s', url);
+    console.log('action=search_users url=%s', url);
     $.ajax({
       url: url,
       dataType: 'json',
@@ -24,6 +33,7 @@ module.exports = React.createClass({
       username: this.props.username,
       password: this.props.password,
       success: function(data) {
+        console.debug('action=users_retrieved users=%s', data.items.length);
         this.setState({users: data.items});
       }.bind(this),
       error: function(xhr, status, err) {
@@ -47,9 +57,9 @@ module.exports = React.createClass({
   
   render: function() {
     return (
-      <div>
+      <div class="filterable-user-list">
         <LocationBox location={this.state.location} onUserInput={this.handleLocationChange}/>
-        <UserList users={this.state.users} />
+        <UserList users={this.state.users} key="users-list" />
       </div>
     );
   }

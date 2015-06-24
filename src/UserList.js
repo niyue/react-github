@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 import User from './User';
+import UserListCaption from './UserListCaption';
 import $ from 'jquery';
 
-export default class UserList extends Component {
-  constructor(props) {
-    super(props);
-  }
+module.exports = React.createClass({
+  shouldComponentUpdate: function (nextProps, nextState) {
+    console.log('action=should_user_list_component_update users=%s', this.props.users.length);
+    return true;
+  },
   
-  render() {
+  render: function() {
     var users = this.props.users.map(function (user) {
         return (
-            <User user={user} key={user.login}/>
+            <div>
+              <User user={user} key={user.login}/>
+            </div>
         );
     });
     return (
-        <div>
-            User List
-            {users}
-        </div>
+      <div class="users-list">
+        <UserListCaption />
+        <dl class="users">
+          {users}
+        </dl>
+      </div>
     );
   }
-}
+});
